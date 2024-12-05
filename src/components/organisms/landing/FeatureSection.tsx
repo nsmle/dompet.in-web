@@ -1,15 +1,19 @@
 "use client";
 
 import { Tab, TabGroup, TabList, TabPanel, TabPanels, Transition } from "@headlessui/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Fragment, ReactElement } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function FeatureSection({ id }: { id: string }): ReactElement {
 	const features = [
 		{
 			title: "Analisis arus kas",
 			description:
-				"Analisis arus kas mendetail, memudahkan pemantauan pengeluaran dan keuntungan, serta membantu mengidentifikasi pola untuk pengambilan keputusan yang lebih baik.",
+				"Analisis arus kas mendetail, memudahkan pemantauan pengeluaran dan pendapatan, serta membantu dalam pengambilan keputusan yang lebih baik.",
 			preview: "/mockup/dashboard.svg",
 		},
 		{
@@ -21,7 +25,7 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 		{
 			title: "Integrasi",
 			description:
-				"Integrasikan dengan platform lain dan catatan transaksi secara otomatis, memastikan akurasi dan memperbarui data keuangan secara real-time, sehingga mengurangi risiko kesalahan manusia.",
+				"Integrasikan dengan platform lain, memastikan akurasi dan memperbarui data keuangan secara real-time, sehingga mengurangi risiko kesalahan manusia.",
 			preview: "/mockup/dashboard.svg",
 		},
 		{
@@ -33,7 +37,7 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 	];
 
 	return (
-		<section id={id} aria-label="Features" className="relative overflow-hidden">
+		<section id={id} className="relative z-10 overflow-hidden">
 			<video
 				autoPlay={true}
 				loop={true}
@@ -48,7 +52,7 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 			</video>
 			<div
 				className={
-					"w-full h-full pb-16 pt-20 sm:py-28 " +
+					"w-full h-full py-16 sm:py-28 " +
 					" bg-[rgb(3,12,77)]/20 md:bg-[rgb(3,12,77)]/30 lg:bg-[rgb(3,12,77)]/25 bg-clip-padding backdrop-blur-md sm:backdrop-blur backdrop-contrast-100 backdrop-saturate-100"
 				}
 			>
@@ -70,7 +74,7 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 						<div className="-mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:pb-0 lg:col-span-5 lg:overflow-visible">
 							<TabList
 								as="div"
-								className="relative z-10 flex gap-x-4 whitespace-nowrap px-4 sm:mx-auto md:px-6 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal lg:px-0"
+								className="relative z-10 flex gap-x-2 whitespace-nowrap px-4 sm:mx-auto sm:gap-x-2.5 md:gap-x-3 md:px-6 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal lg:px-0"
 							>
 								{features.map(
 									({ title, description }, index): ReactElement => (
@@ -79,8 +83,8 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 												<div
 													className={
 														selected
-															? "group relative my-0.5 rounded-full bg-white px-4 py-1 outline-none lg:rounded-l-xl lg:rounded-r-none lg:bg-white/20 lg:p-6 lg:ring-1 lg:ring-inset lg:ring-white/10"
-															: "group relative my-0.5 cursor-pointer rounded-full bg-white/20 px-4  py-1 outline-none hover:bg-white/10 sm:bg-white/5 lg:rounded-l-xl lg:rounded-r-none lg:bg-transparent lg:p-6 lg:hover:bg-white/10"
+															? "group relative my-0.5 rounded-full bg-white px-6 py-1.5 outline-none lg:rounded-l-xl lg:rounded-r-none lg:bg-white/20 lg:p-6 lg:ring-1 lg:ring-inset lg:ring-white/10"
+															: "group relative my-0.5 cursor-pointer rounded-full bg-white/20 px-6 py-1.5 outline-none hover:bg-white/10 sm:bg-white/5 lg:rounded-l-xl lg:rounded-r-none lg:bg-transparent lg:p-6 lg:hover:bg-white/10"
 													}
 												>
 													<h3
@@ -112,7 +116,7 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 												<div
 													className={
 														// "mt-3 sm:mt-4 md:mt-6 w-full overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem] " +
-														"mt-3 sm:mt-4 md:mt-6 w-full overflow-hidden rounded-xl  bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[66.4rem] " +
+														"mt-3 sm:mt-4 md:mt-6 w-full overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[66.4rem] " +
 														"transition duration-300 ease-in data-[closed]:opacity-0"
 													}
 												>

@@ -31,12 +31,12 @@ export default function HeroSection(props: DetailedHTMLProps<HTMLAttributes<HTML
 	});
 
 	return (
-		<section className="relative bg-white/5 lg:pt-40" {...props}>
-			<div className="section mx-auto max-w-7xl px-4 py-28 text-center sm:px-6 md:pb-40 lg:px-6 lg:pt-28">
+		<section className="relative md:bg-white/5 lg:pt-40" {...props}>
+			<div className="section mx-auto max-w-7xl px-4 pb-28 pt-32 text-center sm:px-6 sm:py-28 md:pb-40 lg:px-6 lg:pt-28">
 				<h1
 					style={{ filter: "blur(5px)" }}
 					ref={heroText}
-					className="mx-auto max-w-4xl font-sans text-2xl font-semibold leading-none text-slate-800 sm:text-3xl md:text-4xl md:tracking-tight lg:text-6xl"
+					className="mx-auto max-w-4xl font-sans text-2xl font-semibold leading-tight text-slate-800 sm:text-3xl sm:leading-none md:text-4xl md:tracking-tight lg:text-6xl"
 				>
 					Integrasi
 					<span className="relative md:whitespace-nowrap">
@@ -59,7 +59,7 @@ export default function HeroSection(props: DetailedHTMLProps<HTMLAttributes<HTML
 							Mutasi Keuangan
 						</span>
 					</span>
-					<br className="hidden sm:block md:block lg:hidden" />
+					<br className="sm:hidden" />
 					di Seluruh Platform.
 				</h1>
 				<p

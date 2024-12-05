@@ -28,7 +28,7 @@ export default function Home(): ReactElement {
 		gsap.fromTo(
 			".h2-title",
 			{
-				scrollTrigger: { trigger: problem.current, start: "-90%", end: "-50%", scrub: true },
+				scrollTrigger: { trigger: problem.current, start: "-90%", end: "-50%", scrub: true, once: true },
 				ease: "power3.inOut",
 				scale: 3.5,
 				opacity: 0,
@@ -37,13 +37,15 @@ export default function Home(): ReactElement {
 			},
 			{
 				y: 0,
-				scrollTrigger: { trigger: problem.current, start: "-90%", end: "-50%", scrub: true },
+				scrollTrigger: { trigger: problem.current, start: "-90%", end: "-50%", scrub: true, once: true },
 				ease: "power3.inOut",
 				opacity: 1,
 				scale: 1,
 				filter: "blur(0px)",
 			},
 		);
+
+		// problem
 	});
 
 	return (
