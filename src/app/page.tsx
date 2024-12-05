@@ -59,8 +59,8 @@ export default function Home(): ReactElement {
 					data-object-fit="cover"
 					className="video bg-gradient-to-b from-slate-300 to-transparent"
 				>
-					<source type="video/mp4" data-wf-ignore="true" src={landing.hero.bg} onLoadedData={() => console.log("bg loaded")} />
-					<source type="video/mp4" data-wf-ignore="true" src={landing.hero.bgMinify} onLoadedData={() => console.log("bg-minify loaded")} />
+					<source type="video/mp4" data-wf-ignore="true" src={landing.hero.bg} />
+					<source type="video/mp4" data-wf-ignore="true" src={landing.hero.bgMinify} />
 				</video>
 
 				<HeroSection id="hero" ref={hero} />

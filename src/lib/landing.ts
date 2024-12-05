@@ -8,8 +8,10 @@ type Landing = {
 export const landing: Landing = {
 	hero: {
 		text: "Sebagian besar transaksi multi-sumber, sulit dicacat. Kami berfokus mempercepat proses pencatatan transaksi multi-sumber, dan berharap hasil pembukuan dapat langsung digunakan.",
-		bg: "/motion/background.mp4",
-		bgMinify: "/motion/background-minify.mp4",
+		// bg: "/motion/background.mp4",
+		// bgMinify: "/motion/background-minify.mp4",
+		bg: "/motion/background-minify.mp4",
+		bgMinify: "/motion/background-minify-1.mp4",
 	},
 	problems: [
 		{
