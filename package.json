@@ -25,9 +25,13 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "@headlessui/react": "^2.2.0",
+    "clsx": "^2.1.1",
+    "gsap": "^3.12.5",
     "next": "15.0.3",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
