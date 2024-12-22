@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { DetailedHTMLProps, HTMLAttributes, ReactElement, useRef } from "react";

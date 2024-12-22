@@ -1,12 +1,15 @@
+import clsx from "clsx";
 import gsap from "gsap";
 import Link, { LinkProps } from "next/link";
-import { CSSProperties, Fragment, ReactElement, ReactNode, useEffect, useRef } from "react";
+import { AnchorHTMLAttributes, CSSProperties, DetailedHTMLProps, Fragment, ReactElement, ReactNode, useEffect, useRef } from "react";
 
-type ButtonInverseSecondaryProps = LinkProps & {
-	children: ReactNode;
-	icon?: ReactNode;
-	anim?: "fade-right" | "fade-left";
-};
+type ButtonInverseSecondaryProps = LinkProps &
+	DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> & {
+		children: ReactNode;
+		icon?: ReactNode;
+		iconPlace?: "left" | "right";
+		anim?: "fade-right" | "fade-left";
+	};
 
 const getMotion = (motion?: ButtonInverseSecondaryProps["anim"]): gsap.TweenVars => {
 	switch (motion) {
@@ -34,6 +37,7 @@ export const ButtonInverseSecondary = (props: ButtonInverseSecondaryProps): Reac
 	const style = getStyle(props.anim);
 	const motion = getMotion(props.anim);
 	const linkRef = useRef<HTMLAnchorElement>(null);
+	const { className, ...linkProps } = props;
 
 	useEffect((): void => {
 		if (props.anim) gsap.to(linkRef.current, motion);
@@ -43,14 +47,19 @@ export const ButtonInverseSecondary = (props: ButtonInverseSecondaryProps): Reac
 		<Link
 			ref={linkRef}
 			style={style}
-			className="group inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 font-sans text-sm font-medium text-slate-600 transition-all duration-700 hover:scale-95 hover:text-slate-900 hover:shadow-2xl hover:ring-slate-300 focus:outline-none focus-visible:outline-blue-600 focus-visible:ring-slate-300 active:bg-slate-100 active:text-slate-600 sm:text-base md:text-lg lg:text-lg"
-			{...props}
+			className={clsx([
+				"group inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 font-sans text-sm font-medium text-slate-600 transition-all duration-700 hover:scale-95 hover:text-slate-900 hover:shadow-2xl hover:ring-slate-300 focus:outline-none focus-visible:outline-blue-600 focus-visible:ring-slate-300 active:bg-slate-100 active:text-slate-600 sm:text-base md:text-lg lg:text-lg " +
+					className,
+			])}
+			{...linkProps}
 		>
 			{props.icon ? (
-				<Fragment>
-					<span className="mr-2">{props.children}</span>
-					{props.icon}
-				</Fragment>
+				<div className="flex items-center justify-center">
+					{props?.iconPlace == "left" ? props.icon : ""}
+					<span className={props?.iconPlace == "left" ? "ml-2" : "mr-2"}>{props.children}</span>
+					{props?.iconPlace == "right" ? props.icon : ""}
+					{!props?.iconPlace && props.icon}
+				</div>
 			) : (
 				<Fragment>{props.children}</Fragment>
 			)}
