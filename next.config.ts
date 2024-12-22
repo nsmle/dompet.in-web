@@ -2,11 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	/* config options here */
-	// serverExternalPackages: [
-	// 	"sequelize",
-	// 	//  "@sequelize/core",
-	// 	"sequelize-typescript",
-	// ],
+	serverExternalPackages: ["sequelize", "@sequelize/core", "sequelize-typescript"],
 	experimental: {
 		turbo: {
 			resolveAlias: {
@@ -16,8 +12,6 @@ const nextConfig: NextConfig = {
 				"@sequelize/db2-ibmi": "@sequelize/mysql",
 				"@sequelize/snowflake": "@sequelize/mysql",
 			},
-			// resolveExtensions: [".ts", ".tsx", ".js"],
-			// 		treeShaking: true,
 			minify: true,
 		},
 	},

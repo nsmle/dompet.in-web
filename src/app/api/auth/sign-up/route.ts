@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
-import { HttpRequest, HttpResponse } from "@service/http/http.service";
+import { NextRequest, NextResponse } from "next/server";
+import { Repository } from "@service/repositories/core/repository";
 
-export async function GET(request: HttpRequest): Promise<HttpResponse> {
-	const repo = request.repo;
+export async function GET(request: NextRequest): Promise<NextResponse> {
+	const repo = new Repository();
 	console.log(repo?.user);
 
 	const requestHeaders = new Headers(request.headers);

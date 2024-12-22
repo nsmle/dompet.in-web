@@ -26,9 +26,9 @@
       "@component/*": ["./src/components/*"],
       "@hook/*": ["./src/hooks/*"],
       "@lib/*": ["./src/lib/*"],
-      "@service/*": ["./src/services/*"],
       "@entity/*": ["./src/services/entities/*"],
       "@repository/*": ["./src/services/repositories/*"],
+      "@service/*": ["./src/services/*"],
       "@style/*": ["./src/styles/*"],
       "@font/*": ["./src/styles/fonts/*"],
       "@src/*": ["./src/*"]
