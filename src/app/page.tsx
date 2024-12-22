@@ -3,14 +3,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactElement, useRef } from "react";
-import FeatureSection from "@component/organisms/landing/FeatureSection";
-import HeroSection from "@component/organisms/landing/HeroSection";
-import ProblemSection from "@component/organisms/landing/ProblemSection";
-import { landing } from "@src/lib/landing";
+import { FeatureSection } from "@component/organisms/landing/FeatureSection";
+import { HeroSection } from "@component/organisms/landing/HeroSection";
+import { ProblemSection } from "@component/organisms/landing/ProblemSection";
+import { landing } from "@lib/landing";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function Home(): ReactElement {
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+export default function HomePage(): ReactElement {
 	const container = useRef(null);
 	const wrapper = useRef(null);
 	const hero = useRef(null);
@@ -19,7 +18,7 @@ export default function Home(): ReactElement {
 	useGSAP((): void => {
 		gsap.from(".banks", {
 			scrollTrigger: { trigger: hero.current, start: "0%", end: "10%", scrub: true, markers: false, once: true },
-			ease: "power.inOut",
+			ease: "power3.inOut",
 			duration: 0.01,
 			y: 50,
 			opacity: 0,
@@ -44,8 +43,6 @@ export default function Home(): ReactElement {
 				filter: "blur(0px)",
 			},
 		);
-
-		// problem
 	});
 
 	return (

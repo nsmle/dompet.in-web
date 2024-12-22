@@ -62,16 +62,17 @@ body {
   .video {
       left: -50%;
       top: 0%;
-      transform: scale(3);
+      transform: scale(3.2);
     }
 }
+
 
 /* max-lg */
 @media (min-width: 1024px) {
   .video {
       left: -50%;
       top: 0%;
-      transform: scale(2.5);
+      transform: scale(2.85);
     }
   }
   
@@ -80,15 +81,31 @@ body {
   .video {
     left: -10%;
     top: 0%;
-    transform: scale(1.8);
+    transform: scale(2.1);
   }
 }
 
 /* max-2xl */
 @media (min-width: 1536px) {
   .video {
-      left: 10%;
+    left: -10%;
+    top: 0%;
+    transform: scale(1.3);
+  }
+}
+
+@media (min-width: 1541px) {
+  .video {
+      left: -10%;
       top: 0%;
-      transform: scale(1.2);
+      transform: scale(1.6);
     }
+}
+
+@media (min-width: 1550px) {
+  .video {
+    left: 0%;
+    top: 0%;
+    transform: scale(1.5);
+  }
 }

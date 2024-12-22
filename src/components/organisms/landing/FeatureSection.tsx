@@ -1,14 +1,10 @@
 "use client";
 
 import { Tab, TabGroup, TabList, TabPanel, TabPanels, Transition } from "@headlessui/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Fragment, ReactElement } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function FeatureSection({ id }: { id: string }): ReactElement {
+export const FeatureSection = ({ id }: { id: string }): ReactElement => {
 	const features = [
 		{
 			title: "Analisis arus kas",
@@ -46,7 +42,7 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 				preload="none"
 				data-wf-ignore="true"
 				data-object-fit="cover"
-				className="absolute bottom-0 min-h-full scale-[2.4] bg-gradient-to-b from-slate-800 object-cover sm:scale-[2.1] lg:scale-[1.2]"
+				className="3xl:scale-[2.1] absolute bottom-0 min-h-full scale-[2.4] bg-gradient-to-b from-slate-800 object-cover sm:scale-[2.1] lg:scale-[1.2] xl:scale-[1.6] 2xl:scale-[1.8]"
 			>
 				<source type="video/mp4" data-wf-ignore="true" src="/motion/transcode.mp4" />
 			</video>
@@ -150,4 +146,4 @@ export default function FeatureSection({ id }: { id: string }): ReactElement {
 			</div>
 		</section>
 	);
-}
+};

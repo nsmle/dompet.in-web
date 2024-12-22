@@ -7,7 +7,7 @@ export interface ProblemSectionProps extends DetailedHTMLProps<HTMLAttributes<HT
 	problems: CardStackProps["items"];
 }
 
-export default function ProblemSection(props: ProblemSectionProps): ReactElement {
+export const ProblemSection = (props: ProblemSectionProps): ReactElement => {
 	return (
 		<section className="relative z-20 bg-gradient-to-b from-slate-200 to-white pb-16 sm:pb-32 md:pt-12 lg:pb-44" {...props}>
 			<div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -25,4 +25,4 @@ export default function ProblemSection(props: ProblemSectionProps): ReactElement
 			</div>
 		</section>
 	);
-}
+};

@@ -24,6 +24,16 @@ export default {
 	theme: {
 		borderRadius,
 		extend: {
+			maxWidth: {
+				"8xl": "90rem",
+				"9xl": "100rem",
+				"10xl": "110rem",
+				"11xl": "120rem",
+				"12xl": "130rem",
+				"13xl": "140rem",
+				"14xl": "150rem",
+				"15xl": "160rem",
+			},
 			boxShadow,
 			colors: {
 				background: "var(--background)",

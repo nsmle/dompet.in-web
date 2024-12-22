@@ -1,26 +1,50 @@
 import { Metadata } from "next";
+import { IconDescriptor } from "next/dist/lib/metadata/types/metadata-types";
 
-const WEB_URL = "https://dompetin.vercel.app";
-const WEB_TITLE = "DompetIn - Safe and Secure Transactions History";
-const WEB_DESCRIPTION = "DompetIn is a web application to manage your transactions history";
+export const transcode = (text?: string): string => {
+	if (!text) return "";
+	const transcoded = text
+		.replace(/APP_URL/gm, String(process.env.NEXT_PUBLIC_APP_URL))
+		.replace(/APP_NAME/gm, String(process.env.NEXT_PUBLIC_APP_NAME))
+		.replace(/APP_TITLE/gm, String(process.env.NEXT_PUBLIC_APP_TITLE))
+		.replace(/APP_DESCRIPTION/gm, String(process.env.NEXT_PUBLIC_APP_DESCRIPTION))
+		.trim();
+	return transcoded;
+};
 
-export const useMetadata = (): Metadata => ({
-	title: WEB_TITLE,
-	description: WEB_DESCRIPTION,
+export const brandIcon: IconDescriptor = {
+	url: transcode("APP_URL/brand.svg"),
+	type: "image/svg+xml",
+	color: "purple",
+	fetchPriority: "high",
+	sizes: "512x512",
+};
+
+export const APP_URL: string = transcode("APP_URL");
+export const APP_NAME: string = transcode("APP_NAME");
+export const APP_TITLE: string = transcode("APP_TITLE");
+export const APP_DESCRIPTION: string = transcode("APP_DESCRIPTION");
+export const APP_ICON: IconDescriptor[] = [brandIcon];
+
+export const useMetadata = (pageTitle?: string, pageDescription?: string): Metadata => ({
+	applicationName: APP_NAME,
+	title: transcode(pageTitle || APP_TITLE),
+	description: transcode(pageDescription || APP_DESCRIPTION),
+	icons: APP_ICON,
 	openGraph: {
 		type: "website",
-		locale: "en_US",
-		url: WEB_URL,
-		title: WEB_TITLE,
-		description: WEB_DESCRIPTION,
+		locale: "id_ID",
+		url: APP_URL,
+		title: transcode(pageTitle || APP_TITLE),
+		description: transcode(pageDescription || APP_DESCRIPTION),
 		images: [
 			{
-				url: `${WEB_URL}/mockup/dashboard.svg`,
+				url: transcode("APP_URL/mockup/dashboard.svg"),
 				width: 1200,
 				height: 630,
-				alt: WEB_TITLE,
+				alt: APP_TITLE,
 			},
 		],
-		siteName: "DompetIn",
+		siteName: APP_NAME,
 	},
 });

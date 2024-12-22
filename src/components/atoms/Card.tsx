@@ -52,6 +52,7 @@ export const Card = ({ title, description, href, preview }: CardProps): ReactEle
 							height="58"
 							decoding="async"
 							data-nimg="1"
+							{...(preview.includes(".gif") ? { unoptimized: true } : {})}
 							className="size-full object-cover transition-all duration-700 group-hover/card:scale-105"
 							src={preview}
 						/>
