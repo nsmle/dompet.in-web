@@ -37,6 +37,8 @@
     "@sequelize/postgres": "^7.0.0-alpha.43",
     "@sequelize/snowflake": "^7.0.0-alpha.43",
     "@sequelize/sqlite3": "^7.0.0-alpha.43",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
