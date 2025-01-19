@@ -22,6 +22,14 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				{(process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview") && (
+					// eslint-disable-next-line @next/next/no-sync-scripts
+					<script
+						data-recording-token="qckdFI25JA2HGi7EWB8vZazSbxNSfb9nXYAIK8Mo"
+						data-is-production-environment="false"
+						src="https://snippet.meticulous.ai/v1/meticulous.js"
+					/>
+				)}
 				<AuthProvider user={session.user} isAuthenticate={session.isAuthenticate}>
 					<ThemeProvider>{children}</ThemeProvider>
 				</AuthProvider>
