@@ -32,7 +32,16 @@ export const HeroSection = (props: DetailedHTMLProps<HTMLAttributes<HTMLElement>
 	});
 
 	return (
-		<section className="relative md:bg-white/5 lg:pt-40" {...props}>
+		<section className="relative lg:pt-40" {...props}>
+			<div
+				className="absolute top-0 -z-10 min-h-[120%] w-screen"
+				style={{
+					backgroundImage: "linear-gradient(to bottom left, rgba(37,99,235,0.17), #00000000 80%)",
+					pointerEvents: "none",
+					width: "100%",
+					position: "absolute",
+				}}
+			/>
 			<div className="section 2xl:pt-58 mx-auto max-w-7xl px-4 pb-28 pt-32 text-center sm:px-6 sm:py-28 sm:pt-44 md:pb-40 md:pt-52 lg:px-6 lg:pt-36 xl:pt-48">
 				<h1
 					style={{ filter: "blur(5px)" }}
@@ -54,7 +63,7 @@ export const HeroSection = (props: DetailedHTMLProps<HTMLAttributes<HTMLElement>
 					{landing.hero.text}
 				</p>
 				<div className="mt-10 flex flex-col justify-center gap-y-2 sm:flex-row sm:gap-x-4 md:gap-x-6 md:gap-y-0">
-					<ButtonInversePrimary anim="fade-right" href="/auth/sign-in">
+					<ButtonInversePrimary anim="fade-right" href="/auth/sign-up">
 						Mulai Mencatat
 					</ButtonInversePrimary>
 					<ButtonInverseSecondary anim="fade-left" href="/docs/use-case">
@@ -69,6 +78,7 @@ export const HeroSection = (props: DetailedHTMLProps<HTMLAttributes<HTMLElement>
 				style={{
 					zIndex: "10",
 					backgroundImage: "linear-gradient(to bottom, #00000000, rgb(226 232 240) 69%)",
+					// backgroundImage: "linear-gradient(to bottom, #00000000, rgb(219 234 254) 69%)",
 					pointerEvents: "none",
 					width: "100%",
 					position: "absolute",

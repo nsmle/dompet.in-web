@@ -27,6 +27,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@headlessui/react": "^2.2.0",
+    "@hookform/resolvers": "^3.9.1",
     "@sequelize/core": "^7.0.0-alpha.43",
     "@sequelize/db2": "^7.0.0-alpha.43",
     "@sequelize/db2-ibmi": "^7.0.0-alpha.43",
@@ -36,8 +37,11 @@
     "@sequelize/postgres": "^7.0.0-alpha.43",
     "@sequelize/snowflake": "^7.0.0-alpha.43",
     "@sequelize/sqlite3": "^7.0.0-alpha.43",
+    "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
+    "jose": "^5.9.6",
+    "luxon": "^3.5.0",
     "mariadb": "^3.4.0",
     "mysql2": "^3.11.5",
     "next": "15.0.3",
@@ -45,11 +49,16 @@
     "pg-hstore": "^2.3.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.5.1",
     "sequelize": "^6.37.5",
     "sequelize-typescript": "^2.1.6",
-    "uuid": "^11.0.3"
+    "server-only": "^0.0.1",
+    "uuid": "^11.0.3",
+    "zod": "^3.25.0-canary.20241210T225910"
   },
   "devDependencies": {
+    "@types/luxon": "^3.4.2",
     "@types/node": "^22.10.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Fragment, ReactElement, useState } from "react";
 import { Icon, IconProps } from "@component/atoms/Icon";
 
-interface INavItem {
+interface ILandingNavItem {
 	name: string;
 	url?: string;
 	icon?: string;
@@ -20,18 +20,18 @@ interface INavItem {
 	footerItemRight?: { label: string; url: string; icon: IconProps["type"] };
 }
 
-export interface NavItemProps {
-	items: INavItem[];
+export interface LandingNavItemProps {
+	items: ILandingNavItem[];
 }
 
-export const NavItem = (props: NavItemProps): ReactElement => {
+export const LandingNavItem = (props: LandingNavItemProps): ReactElement => {
 	return (
 		<Fragment>
 			{props.items.map(
-				(item, _): ReactElement => (
-					<Fragment key={`nav-child-item-${item.name}-${_}`}>
+				(item, indexNavChildItem): ReactElement => (
+					<Fragment key={`nav-child-item-${item.name}-${indexNavChildItem}`}>
 						{item?.items?.length ? (
-							<Item {...item} />
+							<LandingItem {...item} />
 						) : (
 							<Link href={item?.url || "#"} className="text-sm/6 font-semibold text-slate-700 xl:text-base">
 								{item.name}
@@ -44,7 +44,7 @@ export const NavItem = (props: NavItemProps): ReactElement => {
 	);
 };
 
-export const Item = (item: INavItem): ReactElement => {
+export const LandingItem = (item: ILandingNavItem): ReactElement => {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -70,9 +70,9 @@ export const Item = (item: INavItem): ReactElement => {
 					<div className="mx-auto w-full overflow-hidden rounded-3xl bg-white shadow-4xl shadow-blue-800/20">
 						<div className="p-4">
 							{item.items?.map(
-								(childItem, _): ReactElement => (
+								(childItem, indexChildItem): ReactElement => (
 									<div
-										key={`nav-child-item-${childItem.name}-${_}`}
+										key={`nav-child-item-${childItem.name}-${indexChildItem}`}
 										className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-slate-50"
 									>
 										<div className="flex size-11 flex-none items-center justify-center rounded-lg bg-slate-50 group-hover:bg-violet-50">

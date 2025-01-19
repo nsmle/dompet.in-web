@@ -15,9 +15,30 @@ import type { UUID } from "@src/utils/uuid.util";
 import { uuid } from "@src/utils/uuid.util";
 
 export enum Permission {
-	UpdateUser = "update-user",
-	SuspendUser = "suspend-user",
-	DeleteUser = "delete-user",
+	ReadTransaction = "RTRX",
+	CreateTransaction = "CTRX",
+	UpdateTransaction = "UTRX",
+	DeleteTransaction = "DTRX",
+	ApproveTransaction = "APTRX",
+	RejectTransaction = "RJTRX",
+	AssignTransactionCategory = "ATCTX",
+
+	ReadCategoryTransaction = "RCTRX",
+	CreateCategoryTransaction = "CCTRX",
+	UpdateCategoryTransaction = "UCTRX",
+	DeleteCategoryTransaction = "DCTRX",
+
+	UpdateUser = "OPUUSR",
+	SuspendUser = "OPSUSR",
+	DeleteUser = "OPDUSR",
+
+	CreateRole = "CRRLE",
+	UpdateRole = "UPRLE",
+	DeleteRole = "DTRLE",
+
+	CreatePermission = "CPRMS",
+	UpdatePermission = "UPRMS",
+	DeletePermission = "DPRMS",
 }
 
 @Table({ modelName: "Role", tableName: "roles" })
@@ -43,10 +64,10 @@ export class RoleEntity extends Model<InferAttributes<RoleEntity>, InferCreation
 	declare creatorId?: UUID;
 
 	@HasMany((): typeof UserEntity => UserEntity, { foreignKey: "roleId", sourceKey: "id" })
-	declare users: UserEntity;
+	declare users: UserEntity[];
 
 	@BelongsTo((): typeof UserEntity => UserEntity, { foreignKey: "creatorId", targetKey: "id" })
-	declare creator?: UserEntity;
+	declare creator?: Awaited<UserEntity>;
 
 	declare createdAt: CreationOptional<Date>;
 	declare updatedAt: CreationOptional<Date>;

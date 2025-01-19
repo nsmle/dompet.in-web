@@ -1,9 +1,23 @@
+"use client";
+
 import clsx from "clsx";
 import gsap from "gsap";
 import Link, { LinkProps } from "next/link";
-import { AnchorHTMLAttributes, CSSProperties, DetailedHTMLProps, Fragment, ReactElement, ReactNode, useEffect, useRef } from "react";
+import {
+	AnchorHTMLAttributes,
+	ButtonHTMLAttributes,
+	CSSProperties,
+	DetailedHTMLProps,
+	Fragment,
+	ReactElement,
+	ReactNode,
+	RefObject,
+	useEffect,
+	useRef,
+} from "react";
 
-type ButtonInverseSecondaryProps = LinkProps &
+type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+type ButtonInverseSecondaryProps = Partial<LinkProps> &
 	DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> & {
 		children: ReactNode;
 		icon?: ReactNode;
@@ -36,33 +50,58 @@ const getStyle = (motion?: ButtonInverseSecondaryProps["anim"]): CSSProperties =
 export const ButtonInverseSecondary = (props: ButtonInverseSecondaryProps): ReactElement => {
 	const style = getStyle(props.anim);
 	const motion = getMotion(props.anim);
-	const linkRef = useRef<HTMLAnchorElement>(null);
-	const { className, ...linkProps } = props;
+	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
+	const { className, iconPlace, ...properties } = props;
 
 	useEffect((): void => {
-		if (props.anim) gsap.to(linkRef.current, motion);
+		if (props.anim) gsap.to(ref.current, motion);
 	}, [props.anim]);
 
 	return (
-		<Link
-			ref={linkRef}
-			style={style}
-			className={clsx([
-				"group inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 font-sans text-sm font-medium text-slate-600 transition-all duration-700 hover:scale-95 hover:text-slate-900 hover:shadow-2xl hover:ring-slate-300 focus:outline-none focus-visible:outline-blue-600 focus-visible:ring-slate-300 active:bg-slate-100 active:text-slate-600 sm:text-base md:text-lg lg:text-lg " +
-					className,
-			])}
-			{...linkProps}
-		>
-			{props.icon ? (
-				<div className="flex items-center justify-center">
-					{props?.iconPlace == "left" ? props.icon : ""}
-					<span className={props?.iconPlace == "left" ? "ml-2" : "mr-2"}>{props.children}</span>
-					{props?.iconPlace == "right" ? props.icon : ""}
-					{!props?.iconPlace && props.icon}
-				</div>
+		<Fragment>
+			{props.href ? (
+				<Link
+					ref={ref as any}
+					style={style}
+					className={clsx([
+						"group inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 font-sans text-sm font-medium text-slate-600 transition-all duration-700 hover:scale-95 hover:text-slate-900 hover:shadow-2xl hover:ring-slate-300 focus:outline-none focus-visible:outline-blue-600 focus-visible:ring-slate-300 active:bg-slate-100 active:text-slate-600 sm:text-base md:text-lg lg:text-lg " +
+							className,
+					])}
+					{...(properties as LinkProps)}
+				>
+					{props.icon ? (
+						<div className="flex items-center justify-center">
+							{iconPlace == "left" ? props.icon : ""}
+							<span className={iconPlace == "left" ? "ml-2" : "mr-2"}>{props.children}</span>
+							{iconPlace == "right" ? props.icon : ""}
+							{!iconPlace && props.icon}
+						</div>
+					) : (
+						<Fragment>{props.children}</Fragment>
+					)}
+				</Link>
 			) : (
-				<Fragment>{props.children}</Fragment>
+				<button
+					ref={ref as RefObject<HTMLButtonElement>}
+					style={style}
+					className={clsx(
+						"group inline-flex items-center justify-center rounded-full bg-white px-8 py-2.5 font-sans text-sm font-medium text-slate-600 transition-all duration-700 hover:scale-95 hover:text-slate-900 hover:shadow-2xl hover:ring-slate-300 focus:outline-none focus-visible:outline-blue-600 focus-visible:ring-slate-300 active:bg-slate-100 active:text-slate-600 sm:text-base md:text-lg lg:text-lg " +
+							props?.className,
+					)}
+					{...(properties as ButtonProps)}
+				>
+					{props.icon ? (
+						<div className="flex items-center justify-center">
+							{iconPlace == "left" ? props.icon : ""}
+							<span className={iconPlace == "left" ? "ml-2" : "mr-2"}>{props.children}</span>
+							{iconPlace == "right" ? props.icon : ""}
+							{!iconPlace && props.icon}
+						</div>
+					) : (
+						<Fragment>{props.children}</Fragment>
+					)}
+				</button>
 			)}
-		</Link>
+		</Fragment>
 	);
 };

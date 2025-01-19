@@ -1,36 +1,41 @@
 "use client";
+
 import { Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
+import { LandingNavItem, LandingNavItemProps } from "@component/organisms/landing/LandingNavItem";
+import { useAuth } from "@hook/AuthProvider";
+import { brandIcon, useMetadata } from "@hook/useMetadata";
 import useScroll from "@hook/useScroll";
-import { APP_URL, brandIcon, useMetadata } from "@hook/useMetadata";
-import { NavItem, NavItemProps } from "@component/organisms/NavItem";
+import { route } from "@lib/uri";
+import { Config } from "@src/utils/config.util";
 
-export const Header = (): ReactElement => {
+export const LandingHeader = (): ReactElement => {
+	const auth = useAuth();
 	const [mobileMenuShow, setMobileMenuShow] = useState<boolean>(false);
-	const navItem: NavItemProps["items"] = [
+	const navItem: LandingNavItemProps["items"] = [
 		{
 			name: "Producs",
 			items: [
 				{
 					name: "Laporan Keuangan",
 					description: "Catat mutasi transaksi di berbagai layanan keuangan, dengan laporan keuangan yang akurat",
-					url: "/transactions",
+					url: route.transaction,
 					icon: "analytics",
 				},
 				{
 					name: "Data Produk",
 					description: "Bandingkan data produk dengan mudah dan cepat, dengan data produk yang terintegrasi",
-					url: "/products",
+					url: route.product,
 					icon: "automations",
 				},
 				{
 					name: "Rest API",
 					description: "Buat layanan pencatat mutasi keuangan mu sendiri dengan layanan Rest API kami",
-					url: "/developers/api",
+					url: route.developers,
 					icon: "integrations",
 				},
 			],
@@ -41,47 +46,47 @@ export const Header = (): ReactElement => {
 				{
 					name: "Laporan",
 					description: "Dapatkan laporan keuangan yang akurat",
-					url: "/transactions",
+					url: route.transaction,
 					icon: "analytics",
 				},
 				{
 					name: "Integrasi",
 					description: "Integrasi layanan keuangan, w-wallet, dan bank",
-					url: "/integrations",
+					url: route.integration,
 					icon: "integrations",
 				},
 				{
 					name: "Otomatisasi",
 					description: "Catat transaksi otomatis dari layanan keuangan",
-					url: "/integrations/connect",
+					url: route.integration_connect,
 					icon: "automations",
 				},
 				{
 					name: "Kolaborasi",
 					description: "Kolaborasi mutasi dengan keluarga dan tim",
-					url: "/workspaces",
+					url: route.workspace,
 					icon: "engagement",
 				},
 				{
 					name: "Keamanan",
 					description: "Keamanan data mutasi transaksi yang ditingkatkan",
-					url: "/settings/certificate",
+					url: route.setting_certificate,
 					icon: "security",
 				},
 			],
 			footerItemLeft: {
 				label: "Tonton Demo",
-				url: "https://www.youtube.com/watch?v=35Z_ds3gLwOQ",
+				url: route.video_demo,
 				icon: "video",
 			},
 			footerItemRight: {
 				label: "Tutorial",
-				url: "https://www.youtube.com/watch?v=2Ja_g3EL2dfF",
+				url: route.video_tutorial,
 				icon: "video",
 			},
 		},
-		{ name: "Pricing", url: "/pricing" },
-		{ name: "Docs", url: "/docs" },
+		{ name: "Pricing", url: route.pricing },
+		{ name: "Docs", url: route.docs },
 	];
 
 	const [glassHeader, setGlassHeader] = useState<boolean>(false);
@@ -100,9 +105,9 @@ export const Header = (): ReactElement => {
 				])}
 				aria-label="Global"
 			>
-				<div className="mx-auto flex w-full max-w-full items-center justify-between px-6 py-4 md:py-5 lg:px-8 xl:px-16 xl:py-6 2xl:max-w-10xl 2xl:px-24">
+				<div className="mx-auto flex w-full max-w-full items-center justify-between px-6 py-4 md:py-4 lg:px-8 xl:px-16 xl:py-5 2xl:max-w-10xl 2xl:px-24">
 					<div className="flex items-center lg:flex-1">
-						<Link href={APP_URL} className="-m-1.5 flex items-center p-1.5">
+						<Link href={Config.AppUrl} className="-m-1.5 flex items-center p-1.5">
 							<Image
 								className="h-6 w-auto md:h-7 lg:h-8"
 								src={brandIcon.url.toString()}
@@ -127,15 +132,24 @@ export const Header = (): ReactElement => {
 						</button>
 					</div>
 					<div className="hidden lg:flex lg:items-center lg:gap-x-12">
-						<NavItem items={navItem} />
+						<LandingNavItem items={navItem} />
 					</div>
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-						<Link
-							href={"/auth/sign-in"}
-							className="-my-2 rounded-lg bg-transparent px-4 py-2 text-sm/6 font-semibold text-gray-900 transition-all duration-700 hover:bg-white/20 hover:bg-clip-padding hover:backdrop-blur-xl active:scale-95 xl:text-base"
-						>
-							Log in <span aria-hidden="true">&rarr;</span>
-						</Link>
+						{auth?.user?.id ? (
+							<Link
+								href={route.dashboard}
+								className="-my-2 rounded-lg bg-transparent px-4 py-2 text-sm/6 font-semibold text-gray-900 transition-all duration-700 hover:bg-white/20 hover:bg-clip-padding hover:backdrop-blur-xl active:scale-95 xl:text-base"
+							>
+								Dashboard
+							</Link>
+						) : (
+							<Link
+								href={route.signIn}
+								className="-my-2 rounded-lg bg-transparent px-4 py-2 text-sm/6 font-semibold text-gray-900 transition-all duration-700 hover:bg-white/20 hover:bg-clip-padding hover:backdrop-blur-xl active:scale-95 xl:text-base"
+							>
+								Log in <span aria-hidden="true">&rarr;</span>
+							</Link>
+						)}
 					</div>
 				</div>
 			</nav>

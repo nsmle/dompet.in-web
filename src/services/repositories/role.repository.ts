@@ -1,5 +1,5 @@
 import Sequelize, { InferCreationAttributes } from "@sequelize/core";
-import { RoleEntity } from "@service/entities/role.entity";
+import { Permission, RoleEntity } from "@service/entities/role.entity";
 import { Repository } from "@service/repositories/core/repository";
 
 export class RoleRepository {
@@ -18,6 +18,29 @@ export class RoleRepository {
 	}
 
 	async getDefaultRoleId(): Promise<string> {
-		return (await this.model.findOne({ where: { name: ["user", "User"] } }))?.id || "";
+		let roleId = (await this.model.findOne({ where: { name: ["user", "User"] } }))?.id || "";
+		if (!roleId?.length) roleId = (await this.seedDefaultRoles()).dataValues.id;
+
+		return roleId;
+	}
+
+	private async seedDefaultRoles(): Promise<RoleEntity> {
+		return await this.addRole({
+			name: "user",
+			description: "Default User Role",
+			permission: [
+				Permission.ReadTransaction,
+				Permission.CreateTransaction,
+				Permission.UpdateTransaction,
+				Permission.DeleteTransaction,
+				Permission.ApproveTransaction,
+				Permission.RejectTransaction,
+				Permission.AssignTransactionCategory,
+				Permission.ReadCategoryTransaction,
+				Permission.CreateCategoryTransaction,
+				Permission.UpdateCategoryTransaction,
+				Permission.DeleteCategoryTransaction,
+			],
+		});
 	}
 }

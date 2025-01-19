@@ -7,6 +7,26 @@ const borderRadius = {
 	"5xl": "2.5rem",
 };
 
+const colors = {
+	background: "var(--background)",
+	foreground: "var(--foreground)",
+	current: "currentColor",
+	brand: {
+		// purple-heart
+		"50": "#ecefff",
+		"100": "#dce2ff",
+		"200": "#bfc8ff",
+		"300": "#99a4ff",
+		"400": "#7072ff",
+		"500": "#594fff",
+		"600": "#4c30fb",
+		"700": "#5035e1",
+		"800": "#3520b3",
+		"900": "#2f228d",
+		"950": "#1d1452",
+	},
+};
+
 const boxShadow = {
 	...defaultTheme.boxShadow,
 	"3xl": "0 35px 60px -15px rgb(0 0 0 / 0.3);",
@@ -20,7 +40,7 @@ const boxShadow = {
 };
 
 export default {
-	content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
+	content: ["./src/hooks/**/*Provider.{jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
 		borderRadius,
 		extend: {
@@ -34,11 +54,12 @@ export default {
 				"14xl": "150rem",
 				"15xl": "160rem",
 			},
-			boxShadow,
-			colors: {
-				background: "var(--background)",
-				foreground: "var(--foreground)",
+			dropShadow: {
+				"3xl": "0 35px 35px rgba(0, 0, 0, 0.25)",
+				"4xl": ["0 35px 35px rgba(0, 0, 0, 0.25)", "0 45px 65px rgba(0, 0, 0, 0.15)"],
 			},
+			boxShadow,
+			colors,
 		},
 	},
 	plugins: [],

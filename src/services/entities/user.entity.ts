@@ -9,7 +9,7 @@ import {
 	Model,
 	ModelStatic,
 } from "@sequelize/core";
-import { Attribute, BeforeCreate, BelongsTo, NotNull, PrimaryKey, Table, Unique } from "@sequelize/core/decorators-legacy";
+import { Attribute, BeforeCreate, BelongsTo, Default, NotNull, PrimaryKey, Table, Unique } from "@sequelize/core/decorators-legacy";
 import { RoleEntity } from "@service/entities/role.entity";
 import type { UUID } from "@src/utils/uuid.util";
 import { uuid } from "@src/utils/uuid.util";
@@ -58,20 +58,12 @@ export class UserEntity extends Model<InferAttributes<UserEntity>, InferCreation
 	declare role?: Awaited<RoleEntity>;
 
 	@Attribute(DataTypes.BOOLEAN)
+	@Default(false)
 	declare isSuspend: boolean;
 
 	declare createdAt: CreationOptional<Date>;
 	declare updatedAt: CreationOptional<Date>;
 	declare deletedAt: CreationOptional<Date>;
-
-	// static override async create<O extends CreateOptions<Attributes<UserEntity>> = CreateOptions<Attributes<UserEntity>>>(
-	// 	record?: CreationAttributes<UserEntity>,
-	// 	options?: O,
-	// ): Promise<O extends { returning: false } | { ignoreDuplicates: true } ? void : UserEntity> {
-	// 	const reRecord: CreationAttributes<UserEntity> = record as CreationAttributes<UserEntity>;
-	// 	reRecord.id = uuid();
-	// 	return super.create<UserEntity, O>(reRecord, options);
-	// }
 
 	static override async create<
 		M extends Model<InferAttributes<UserEntity>, InferCreationAttributes<UserEntity>> = UserEntity,

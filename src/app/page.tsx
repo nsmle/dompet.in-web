@@ -6,6 +6,7 @@ import { ReactElement, useRef } from "react";
 import { FeatureSection } from "@component/organisms/landing/FeatureSection";
 import { HeroSection } from "@component/organisms/landing/HeroSection";
 import { ProblemSection } from "@component/organisms/landing/ProblemSection";
+import { useThemeDispatch } from "@hook/ThemeProvider";
 import { landing } from "@lib/landing";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -14,6 +15,9 @@ export default function HomePage(): ReactElement {
 	const wrapper = useRef(null);
 	const hero = useRef(null);
 	const problem = useRef(null);
+
+	const dispatchTheme = useThemeDispatch();
+	dispatchTheme({ headerType: "landing", footerType: "none" });
 
 	useGSAP((): void => {
 		gsap.from(".banks", {

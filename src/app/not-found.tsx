@@ -2,8 +2,13 @@
 import { ReactElement } from "react";
 import { ButtonInverseSecondary } from "@component/atoms/ButtonInverseSecondary";
 import { Icon } from "@component/atoms/Icon";
+import { useThemeDispatch } from "@hook/ThemeProvider";
+import { route } from "@lib/uri";
 
 export default function NotFound(): ReactElement {
+	const dispatchTheme = useThemeDispatch();
+	dispatchTheme({ headerType: "landing", footerType: "none" });
+
 	return (
 		<div className="relative overflow-hidden">
 			<video
@@ -26,7 +31,7 @@ export default function NotFound(): ReactElement {
 					<p className="mx-auto mb-4 mt-0.5 max-w-2xl font-sans text-sm font-medium tracking-tight text-slate-700/90 sm:mt-1 sm:text-lg md:mt-2 md:text-lg lg:mb-6 lg:mt-3 lg:text-xl">
 						The page you requested could not be found
 					</p>
-					<ButtonInverseSecondary className="lg:px-8" icon={<Icon type="house" className="ml-1 h-4 w-auto" />} iconPlace="left" href="/">
+					<ButtonInverseSecondary className="lg:px-8" icon={<Icon type="house" className="ml-1 h-4 w-auto" />} iconPlace="left" href={route.landing}>
 						Back to Home
 					</ButtonInverseSecondary>
 				</div>
