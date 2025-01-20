@@ -1,0 +1,38 @@
+name: End-to-end Test
+on:
+  push:
+    branches: [main, master, dev]
+  pull_request:
+    branches: [main, master, dev]
+jobs:
+  e2e-test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm install -g yarn && yarn
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
+      - name: Run Tests
+        env:
+          NEXT_PUBLIC_APP_NAME: ${{ secrets.NEXT_PUBLIC_APP_NAME }}
+          NEXT_PUBLIC_APP_TITLE: ${{ secrets.NEXT_PUBLIC_APP_TITLE }}
+          NEXT_PUBLIC_APP_DESCRIPTION: ${{ secrets.NEXT_PUBLIC_APP_DESCRIPTION }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+          APP_SECRET: ${{ secrets.APP_SECRET }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          SESSION_ALGORITHM: ${{ secrets.SESSION_ALGORITHM }}
+          SESSION_EXPIRE: ${{ secrets.SESSION_EXPIRE }}
+          SESSION_REFRESH_EXPIRE: ${{ secrets.SESSION_REFRESH_EXPIRE }}
+          DATABASE_DRIVER: ${{ secrets.DATABASE_DRIVER }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+          DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        run: yarn test:e2e
+

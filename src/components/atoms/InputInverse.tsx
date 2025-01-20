@@ -49,7 +49,7 @@ export const InputInverse = (props: InputInverseProps): ReactElement => {
 				{...(props.name == "username" && props?.checkUsername ? { onChange: handleOnUsernameChange } : {})}
 			/>
 			{isError && (
-				<span className="mt-1 block font-sans text-xs font-medium leading-tight text-red-300 drop-shadow-4xl">
+				<span aria-label={`error-${props.name}`} className="mt-1 block font-sans text-xs font-medium leading-tight text-red-300 drop-shadow-4xl">
 					{(state.errors[props.name] as any)?.message}
 				</span>
 			)}

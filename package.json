@@ -1,7 +1,7 @@
 {
   "name": "dompet.in-web",
   "description": "A website application for recording manual and automatic financial transactions",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "GPL-3.0-only",
   "author": "Fiki Pratama <hello@fiki.tech> (https://github.com/nsmle/)",
@@ -22,7 +22,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
@@ -60,12 +61,15 @@
     "zod": "^3.25.0-canary.20241210T225910"
   },
   "devDependencies": {
+    "@estruyf/github-actions-reporter": "^1.9.2",
+    "@playwright/test": "^1.49.1",
     "@types/luxon": "^3.4.2",
     "@types/node": "^22.10.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/sequelize": "^4.28.20",
     "@types/validator": "^13.12.2",
+    "dotenv": "^16.4.7",
     "eslint": "^9.16.0",
     "eslint-config-next": "^15.1.5",
     "eslint-config-prettier": "^9.1.0",
@@ -80,3 +84,4 @@
     "typescript": "^5"
   }
 }
+
