@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { route } from "./../src/lib/uri";
-import { Config } from "./../src/utils/config.util";
+import { route } from "../../src/lib/uri";
+import { Config } from "../../src/utils/config.util";
 
 const user = {
 	super: {
