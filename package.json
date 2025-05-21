@@ -44,7 +44,7 @@
     "@sequelize/sqlite3": "^7.0.0-alpha.43",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
-    "axios": "^1.7.9",
+    "axios": "^1.8.2",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "jose": "^5.9.6",
