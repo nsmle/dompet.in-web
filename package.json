@@ -17,6 +17,9 @@
     "type": "individual",
     "url": "https://github.com/sponsors/nsmle"
   },
+  "resolutions": {
+    "sqlite3": "npm:noop3@999.999.999"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -84,4 +87,3 @@
     "typescript": "^5"
   }
 }
-
